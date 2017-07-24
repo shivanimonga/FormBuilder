@@ -10,37 +10,37 @@ public class FormData {
     int atrributeID;
     String value;
 
-    public void setFormId(int formId){
-        this.formId=formId;
+    public void setFormId(int formId) {
+        this.formId = formId;
     }
 
-    public void setDataId(int dataId){
-        this.dataId=dataId;
+    public void setDataId(int dataId) {
+        this.dataId = dataId;
     }
 
-    public void setAtrributeID(int id){
-        atrributeID=id;
+    public void setAtrributeID(int id) {
+        atrributeID = id;
     }
 
-    public void setValue(String value){
-        this.value=value;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     //*************************************//
 
-    public int getDataId(){
+    public int getDataId() {
         return dataId;
     }
 
-    public int getFormId(){
+    public int getFormId() {
         return formId;
     }
 
-    public int getAtrributeID(){
+    public int getAtrributeID() {
         return atrributeID;
     }
 
-    public String getValue(){
+    public String getValue() {
         return value;
     }
 }

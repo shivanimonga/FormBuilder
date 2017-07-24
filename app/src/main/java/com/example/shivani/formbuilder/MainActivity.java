@@ -18,67 +18,60 @@ import com.example.shivani.formbuilder.database.FormMasterDB;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import static com.example.shivani.formbuilder.database.FormMasterDB.DATABASE_NAME;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FormAttributeDB formAttributeDB;
-        FormDataDB formDataDB;
-        formAttributeDB=new FormAttributeDB(this);
-        formDataDB=new FormDataDB(this);
-        SharedPreferences prefs = this.getSharedPreferences("counters", this.MODE_PRIVATE);
-        boolean flag = prefs.getBoolean("counter", false);
-        if(!flag){
-            SQLiteDatabase sqLiteDatabase=openOrCreateDatabase(DATABASE_NAME,MODE_PRIVATE,null);
-            formAttributeDB.onUpgrade(sqLiteDatabase,0,0);
-            formDataDB.onUpgrade(sqLiteDatabase,0,0);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("counter", true);
-            editor.apply();
-        }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     public void goButton(View view) {
+
+        FormAttributeDB formAttributeDB=new FormAttributeDB(this);;
+        FormMasterDB formMasterDB=new FormMasterDB(this);
+        FormDataDB formDataDB=new FormDataDB(this);
+        SharedPreferences prefs = this.getSharedPreferences("counters", this.MODE_PRIVATE);
+        boolean flag = prefs.getBoolean("counter", false);
+        if (!flag) {
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+            formMasterDB.onUpgrade(sqLiteDatabase,0,0);
+            formAttributeDB.onUpgrade(sqLiteDatabase, 0, 0);
+            formDataDB.onUpgrade(sqLiteDatabase, 0, 0);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("counter", true);
+            editor.apply();
+        }
+
         EditText urlText = (EditText) findViewById(R.id.urlEditText);
 
         try {
             URL formURL = new URL(urlText.getText().toString());
             Log.d("form url", formURL.toString());
-            downloadForms downloadForm = new downloadForms(MainActivity.this);
-           if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) // Above Api Level 13
+            DownloadForms downloadForm = new DownloadForms(MainActivity.this);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) // Above Api Level 13
             {
-                downloadForm.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,formURL.toString());
-            }
-            else // Below Api Level 13
+                downloadForm.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, formURL.toString());
+            } else // Below Api Level 13
             {
                 downloadForm.execute(formURL.toString(), null, null);
             }
         } catch (MalformedURLException e) {
             Toast.makeText(this, "Please enter valid url", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+            e.printStackTrace();}
     }
 
     public void addButton(View view) {
         Log.d("in main activity", "viewform button");
-        Intent intent = new Intent(this, viewFormMasters.class);
+        Intent intent = new Intent(this, ViewFormMasters.class);
         startActivity(intent);
     }
 }
-
-
-
-
-

@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:screenOrientation="portrait"
-            android:name=".viewFormMasters" />
+            android:name=".ViewFormMasters" />
         <activity android:screenOrientation="portrait"
-            android:name=".addFormActivity" />
+            android:name=".AddFormActivity" />
         <activity android:screenOrientation="portrait"
-            android:name=".viewFormActivity" />
+            android:name=".DisplayForm" />
         <activity android:screenOrientation="portrait"
-            android:name=".viewFormsList"></activity>
+            android:name=".ViewFormsList"></activity>
     </application>
 
 </manifest>

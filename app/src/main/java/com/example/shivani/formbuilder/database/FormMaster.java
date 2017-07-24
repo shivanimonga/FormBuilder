@@ -11,11 +11,12 @@ public class FormMaster {
     int id;
     String name;
     ArrayList<FormAttributes> formMaster;
-    public FormMaster(){
+
+    public FormMaster() {
 
     }
 
-   public FormMaster(int i, String n, ArrayList<FormAttributes> attributes) {
+    public FormMaster(int i, String n, ArrayList<FormAttributes> attributes) {
         id = i;
         name = n;
         formMaster = attributes;

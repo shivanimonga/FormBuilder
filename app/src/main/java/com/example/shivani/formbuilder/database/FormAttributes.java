@@ -10,13 +10,15 @@ public class FormAttributes {
     String label;
     String type;
     int sequence;
-    public FormAttributes(){
-        id=0;
-        label=null;
-        type=null;
-        sequence=0;
+
+    public FormAttributes() {
+        id = 0;
+        label = null;
+        type = null;
+        sequence = 0;
     }
-   public FormAttributes(int id, String label, String type, int sequence) {
+
+    public FormAttributes(int id, String label, String type, int sequence) {
         this.id = id;
         this.label = label;
         this.type = type;

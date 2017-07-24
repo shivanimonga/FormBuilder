@@ -22,7 +22,7 @@ import com.example.shivani.formbuilder.database.FormDataDB;
 import java.util.ArrayList;
 import java.util.List;
 
-public class viewFormActivity extends AppCompatActivity {
+public class DisplayForm extends AppCompatActivity {
     public TextView textView;
     public EditText editText;
     FormAttributeDB formAttributeDB;
@@ -47,7 +47,7 @@ public class viewFormActivity extends AppCompatActivity {
         linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         scrollView.addView(linearLayout);
-        formAttributeDB = new FormAttributeDB(viewFormActivity.this);
+        formAttributeDB = new FormAttributeDB(DisplayForm.this);
         editForm(formId);
     }
 
@@ -68,7 +68,7 @@ public class viewFormActivity extends AppCompatActivity {
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER);
             else if (attribute.getType().equals("text"))
                 editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-            else if(attribute.getType().equals("string"))
+            else if (attribute.getType().equals("string"))
                 editText.setInputType(InputType.TYPE_CLASS_TEXT);
 
             count++;
@@ -94,7 +94,7 @@ public class viewFormActivity extends AppCompatActivity {
                 }
                 try {
                     if (flag) {
-                        Toast.makeText(viewFormActivity.this, "Please enter all values", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DisplayForm.this, "Please enter all values", Toast.LENGTH_SHORT).show();
                     } else {
                         Log.d("edit text size", String.valueOf(editTextList.size()));
                         for (int i = 0; i < editTextList.size(); i++) {
@@ -110,15 +110,15 @@ public class viewFormActivity extends AppCompatActivity {
                     }
 
                     if (formdataDB.updateData(formDataArrayList, dataId)) {
-                        Toast.makeText(viewFormActivity.this, "Data added succesfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(viewFormActivity.this, MainActivity.class);
+                        Toast.makeText(DisplayForm.this, "Data added succesfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DisplayForm.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
 
                     } else
-                        Toast.makeText(viewFormActivity.this, "Data not added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DisplayForm.this, "Data not added", Toast.LENGTH_SHORT).show();
                 } catch (SQLiteConstraintException e) {
-                    Toast.makeText(viewFormActivity.this, "Data already present", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DisplayForm.this, "Data already present", Toast.LENGTH_SHORT).show();
                 }
             }
         });
